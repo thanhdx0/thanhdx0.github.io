@@ -100,4 +100,4 @@ theme: cactus
 deploy:
   type: git
   repo: git@github.com:thanhdx0/thanhdx0.github.io.git
-  branch: develop
+  branch: master
