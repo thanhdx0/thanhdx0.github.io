@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { getAllPosts } from "@/lib/posts";
+import { getAllProjects } from "@/lib/projects";
 
 export default function Home() {
+  const posts = getAllPosts().slice(0, 3);
+  const projects = getAllProjects().slice(0, 3);
+
   return (
     <div className="flex flex-col gap-8">
       <section id="about">
@@ -46,20 +51,14 @@ export default function Home() {
           <Link href="/writings">Writing</Link>
         </h1>
         <ul className="post-list list-none p-0">
-          <li className="flex gap-4 mb-1">
-            <span className="text-[#666] min-w-[100px]">2024-09-01</span>
-            <span>
-              <Link href="/writings/building-scalable-apps">
-                Building Scalable Applications
-              </Link>
-            </span>
-          </li>
-          <li className="flex gap-4 mb-1">
-            <span className="text-[#666] min-w-[100px]">2020-03-21</span>
-            <span>
-              <Link href="/writings/first-post">First post</Link>
-            </span>
-          </li>
+          {posts.map((post) => (
+            <li key={post.slug} className="flex gap-4 mb-1">
+              <span className="text-[#666] min-w-[100px]">{post.date}</span>
+              <span>
+                <Link href={`/writings/${post.slug}`}>{post.title}</Link>
+              </span>
+            </li>
+          ))}
         </ul>
       </section>
 
@@ -68,37 +67,25 @@ export default function Home() {
           <Link href="/projects">Projects</Link>
         </h1>
         <ul className="post-list list-none p-0">
-          <li className="flex flex-col gap-2 mb-10">
-            <span className="font-bold text-[1.2rem]">
-              <Link href="/projects">Sample App</Link>
-            </span>
-            <p className="m-0 text-[0.9rem] text-[#888]">
-              A modern full-stack application with a responsive frontend and scalable
-              backend.
-            </p>
-            <Link href="/projects">
-              <img
-                src="/images/sample.avif"
-                alt="Sample App Screenshot"
-                className="max-w-[280px] w-full rounded-md shadow-lg"
-              />
-            </Link>
-          </li>
-          <li className="flex flex-col gap-2 mb-10">
-            <span className="font-bold text-[1.2rem]">
-              <Link href="/projects">Portfolio Site Generator</Link>
-            </span>
-            <p className="m-0 text-[0.9rem] text-[#888]">
-              A fast Python-based static site generator for developers.
-            </p>
-            <Link href="/projects">
-              <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
-                alt="Portfolio Site Screenshot"
-                className="max-w-[280px] w-full rounded-md shadow-lg"
-              />
-            </Link>
-          </li>
+          {projects.map((project) => (
+            <li key={project.slug} className="flex flex-col gap-2 mb-10">
+              <span className="font-bold text-[1.2rem]">
+                <Link href="/projects">{project.title}</Link>
+              </span>
+              <p className="m-0 text-[0.9rem] text-[#888]">
+                {project.description}
+              </p>
+              {project.image && (
+                <Link href="/projects">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} Screenshot`}
+                    className="max-w-[280px] w-full rounded-md shadow-lg"
+                  />
+                </Link>
+              )}
+            </li>
+          ))}
         </ul>
       </section>
     </div>
