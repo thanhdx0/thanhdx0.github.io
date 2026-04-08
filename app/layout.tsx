@@ -5,6 +5,19 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Thanh Dang's Blog",
   description: "Personal blog of Thanh Dang - Software Engineer",
+  metadataBase: new URL("https://thanhdx0.github.io"),
+  openGraph: {
+    title: "Thanh Dang's Blog",
+    description: "Personal blog of Thanh Dang - Software Engineer",
+    type: "website",
+    url: "https://thanhdx0.github.io",
+    siteName: "Thanh Dang's Blog",
+  },
+  twitter: {
+    card: "summary",
+    title: "Thanh Dang's Blog",
+    description: "Personal blog of Thanh Dang - Software Engineer",
+  },
 };
 
 export default function RootLayout({
@@ -12,6 +25,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const currentYear = new Date().getFullYear();
+
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
@@ -44,7 +59,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
 
           <footer className="mt-auto pt-5 text-center text-sm text-[#666] flex justify-between">
-            <div>Copyright &copy; 2024 thanhdx0</div>
+            <div>Copyright &copy; {currentYear} thanhdx0</div>
             <nav>
               <ul className="flex gap-4 m-0 p-0 list-none">
                 <li>
