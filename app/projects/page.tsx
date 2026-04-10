@@ -11,17 +11,19 @@ export default function Projects() {
       </header>
 
       <div className="flex flex-col gap-12">
-        {projects.map((project) => (
+        {projects.map((project, index) => (
           <div
             key={project.slug}
-            className="flex flex-col gap-4 pb-8 border-b border-[#333]"
+            className={`flex flex-col gap-4 pb-8 ${
+              index !== projects.length - 1 ? 'border-b border-[var(--border)]' : ''
+            }`}
           >
             <h2>
               <Link
                 href={project.link}
                 target="_blank"
                 rel="noopener"
-                className="hover:text-[#d480aa]"
+                className="hover:text-[var(--accent-hover)]"
               >
                 {project.title}
               </Link>

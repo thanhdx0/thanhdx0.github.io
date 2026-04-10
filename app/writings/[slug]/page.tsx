@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  
+
   let post;
   try {
     post = getPostBySlug(slug);
@@ -35,10 +35,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   const contentHtml = processedContent.toString();
 
   return (
-    <article className="flex flex-col gap-4">
+    <article className="flex flex-col gap-4 pb-8">
       <header>
         <h1 className="text-[1.5rem] mb-4">{post.title}</h1>
-        <div className="text-sm text-[#ccc] mb-4">
+        <div className="text-sm text-[var(--muted)] mb-4">
           <time dateTime={post.date}>{post.date}</time>
         </div>
       </header>

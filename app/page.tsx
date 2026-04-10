@@ -53,7 +53,7 @@ export default function Home() {
         <ul className="post-list list-none p-0">
           {posts.map((post) => (
             <li key={post.slug} className="flex gap-4 mb-1">
-              <span className="text-[#666] min-w-[100px]">{post.date}</span>
+              <span className="text-[var(--muted)] min-w-[100px]">{post.date}</span>
               <span>
                 <Link href={`/writings/${post.slug}`}>{post.title}</Link>
               </span>
@@ -72,7 +72,7 @@ export default function Home() {
               <span className="font-bold text-[1.2rem]">
                 <Link href="/projects">{project.title}</Link>
               </span>
-              <p className="m-0 text-[0.9rem] text-[#888]">
+              <p className="m-0 text-[0.9rem] text-[var(--muted)]">
                 {project.description}
               </p>
               {project.image && (

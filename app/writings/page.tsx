@@ -16,14 +16,14 @@ export default function Writings() {
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-[1.5rem] mb-4">Writing</h1>
-      
+
       <ul className="post-list list-none p-0">
         {years.map((year) => (
           <div key={year}>
             <h2 className="text-base font-bold mb-2">{year}</h2>
             {postsByYear[year].map((post) => (
               <li key={post.slug} className="flex gap-4 mb-1">
-                <span className="text-[#666] min-w-[100px]">{post.date}</span>
+                <span className="text-[var(--muted)] min-w-[100px]">{post.date}</span>
                 <span>
                   <Link href={`/writings/${post.slug}`}>{post.title}</Link>
                 </span>
